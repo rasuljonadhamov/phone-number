@@ -18,6 +18,13 @@ const DigitButton = styled.button`
   border-radius: 3px;
   margin-bottom: 10px;
   margin-right: 15px;
+  background-color: blue;
+  color: #fff;
+  background: ${(props) => props.color};
+
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 const Input = styled.input`
@@ -112,8 +119,10 @@ const App = () => {
             {number}
           </DigitButton>
         ))}
-        <DigitButton onClick={handleOneDelete}>⌫</DigitButton>
-        <ClearButton onClick={handleClearClick}>Cl</ClearButton>
+        <DigitButton color="green" onClick={handleOneDelete}>
+          ⌫
+        </DigitButton>
+        <ClearButton onClick={handleClearClick}>AC</ClearButton>
       </div>
     </Wrapper>
   );
