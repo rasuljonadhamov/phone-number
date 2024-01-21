@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -61,6 +61,7 @@ const App = () => {
 
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
+
     setPhoneNumber(inputValue);
     setIsValid(isValidCode(inputValue));
   };
