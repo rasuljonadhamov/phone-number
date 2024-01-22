@@ -60,17 +60,26 @@ const App = () => {
   const [isValid, setIsValid] = useState(true);
 
   const handleDigitClick = (digit) => {
-    if (phoneNumber.length < 9) {
+    if (phoneNumber.length < 14) {
       setPhoneNumber((prev) => prev + digit);
       setIsValid(isValidCode(phoneNumber + digit));
     }
   };
 
+ 
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
 
-    setPhoneNumber(inputValue);
-    setIsValid(isValidCode(inputValue));
+    const numericValue = inputValue.replace(/\D/g, "");
+
+    const formattedNumber =
+      numericValue.slice(0, 2) +
+      (numericValue.slice(2, 5) ? ` ${numericValue.slice(2, 5)}` : "") +
+      (numericValue.slice(5, 7) ? `-${numericValue.slice(5, 7)}` : "") +
+      (numericValue.slice(7, 9) ? `-${numericValue.slice(7, 9)}` : "");
+
+    setPhoneNumber(formattedNumber);
+    setIsValid(isValidCode(formattedNumber));
   };
 
   const handleClearClick = () => {
@@ -109,7 +118,7 @@ const App = () => {
           onChange={handleInputChange}
           isValid={isValid}
           inputMode="numeric"
-          maxLength={9}
+          maxLength={14}
         />
       </div>
 
