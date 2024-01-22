@@ -60,13 +60,18 @@ const App = () => {
   const [isValid, setIsValid] = useState(true);
 
   const handleDigitClick = (digit) => {
-    if (phoneNumber.length < 14) {
-      setPhoneNumber((prev) => prev + digit);
-      setIsValid(isValidCode(phoneNumber + digit));
+    if (phoneNumber.length < 12) {
+      const newPhoneNumber = phoneNumber + digit;
+      const formattedNumber = newPhoneNumber.replace(
+        /^(\d{2})(\d{3})(\d{2})(\d{2})$/,
+        "$1 $2-$3-$4"
+      );
+
+      setPhoneNumber(formattedNumber);
+      setIsValid(isValidCode(formattedNumber));
     }
   };
 
- 
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
 
